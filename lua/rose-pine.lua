@@ -180,15 +180,15 @@ local function set_highlights()
 		Boolean = { fg = palette.rose },
 		Character = { fg = palette.gold },
 		Comment = { fg = palette.subtle, italic = styles.italic },
-		Conditional = { fg = palette.pine },
-		Constant = { fg = palette.gold },
+		Conditional = { fg = palette.pine, bold = styles.bold},
+		Constant = { fg = palette.gold},
 		Debug = { fg = palette.rose },
 		Define = { fg = palette.iris },
 		Delimiter = { fg = palette.subtle },
 		Error = { fg = palette.love },
-		Exception = { fg = palette.pine },
+		Exception = { fg = palette.pine , bold = styles.bold },
 		Float = { fg = palette.gold },
-		Function = { fg = palette.rose },
+		Function = { fg = palette.text , bold = styles.bold},
 		Identifier = { fg = palette.text },
 		Include = { fg = palette.pine },
 		Keyword = { fg = palette.pine },
@@ -204,13 +204,13 @@ local function set_highlights()
 		Operator = { fg = palette.subtle },
 		PreCondit = { fg = palette.iris },
 		PreProc = { link = "PreCondit" },
-		Repeat = { fg = palette.pine },
+		Repeat = { fg = palette.pine , bold = styles.bold},
 		Special = { fg = palette.foam },
 		SpecialChar = { link = "Special" },
 		SpecialComment = { fg = palette.iris },
 		Statement = { fg = palette.pine, bold = styles.bold },
 		StorageClass = { fg = palette.foam },
-		String = { fg = palette.gold },
+		String = { fg = palette.highlight_text },
 		Structure = { fg = palette.foam },
 		Tag = { fg = palette.foam },
 		Todo = { fg = palette.rose, bg = palette.rose, blend = 20 },
@@ -267,7 +267,7 @@ local function set_highlights()
 
 		--- Identifiers
 		["@variable"] = { fg = palette.text, italic = styles.italic },
-		["@variable.builtin"] = { fg = palette.love, bold = styles.bold },
+		["@variable.builtin"] = { fg = palette.text, bold = styles.bold },
 		["@variable.parameter"] = { fg = palette.iris, italic = styles.italic },
 		["@variable.member"] = { fg = palette.foam },
 
@@ -750,8 +750,8 @@ local function set_highlights()
 		MiniPickPrompt = { bg = groups.panel, bold = styles.bold },
 
 		-- echasnovski/mini.indentscope
-		MiniIndentscopeSymbol = { fg = palette.muted },
-		MiniIndentscopeSymbolOff = { fg = palette.muted },
+		MiniIndentscopeSymbol = { fg = palette.subtle },
+		MiniIndentscopeSymbolOff = { fg = palette.subtle },
 
 		-- echasnovski/mini.statusline
 		MiniStatuslineDevinfo = { fg = palette.subtle, bg = palette.overlay },
@@ -903,6 +903,9 @@ local function set_highlights()
 			autocmd ColorSchemePre * autocmd! rose-pine
 		augroup END
 		]])
+		vim.cmd([[
+			autocmd FileType java highlight @lsp.type.class ctermfg=240 guifg=palette.text gui=bold
+		]])
 	end
 end
 
@@ -925,4 +928,5 @@ function M.setup(options)
 	config.extend_options(options or {})
 end
 
+-- highlight java
 return M
