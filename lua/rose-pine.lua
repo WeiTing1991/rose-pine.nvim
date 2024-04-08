@@ -900,13 +900,34 @@ local function set_highlights()
 			autocmd TermOpen * if &buftype=='terminal'
 				\|setlocal winhighlight=StatusLine:StatusLineTerm,StatusLineNC:StatusLineTermNC
 				\|else|setlocal winhighlight=|endif
-			autocmd ColorSchemePre * autocmd! rose-pine
+			autocmd colorschemepre * autocmd! rose-pine
 		augroup END
 		]])
-		vim.cmd([[
-			autocmd FileType java highlight @lsp.type.class ctermfg=240 guifg=palette.text gui=bold
-		]])
 	end
+	-- extra highlights
+	-- highlight java
+	vim.cmd([[
+	augroup custom_python_highlighting
+		autocmd!
+		autocmd FileType java highlight @lsp.type.class ctermfg=240 guifg=palette.text gui=bold
+	augroup END
+	]])
+
+	-- with vim-go
+	vim.cmd([[
+	augroup custom_python_highlighting
+		autocmd!
+		autocmd FileType go highlight Special guifg=palette.text
+	augroup END
+	]])
+
+	-- python
+	vim.cmd([[
+	augroup custom_python_highlighting
+		autocmd!
+		autocmd FileType python highlight Operator guifg=#31748f  gui=bold
+	augroup END
+	]])
 end
 
 ---@param variant Variant | nil
@@ -928,5 +949,4 @@ function M.setup(options)
 	config.extend_options(options or {})
 end
 
--- highlight java
 return M
