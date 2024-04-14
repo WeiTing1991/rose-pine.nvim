@@ -907,17 +907,17 @@ local function set_highlights()
 	-- extra highlights
 	-- highlight java
 	vim.cmd([[
-	augroup custom_python_highlighting
+	augroup custom_java_highlighting
 		autocmd!
-		autocmd FileType java highlight @lsp.type.class ctermfg=240 guifg=palette.text gui=bold
+		autocmd FileType java highlight @lsp.type.class guifg=palette.text gui=bold
 	augroup END
 	]])
 
 	-- with vim-go
 	vim.cmd([[
-	augroup custom_python_highlighting
+	augroup custom_go_highlighting
 		autocmd!
-		autocmd FileType go highlight Special guifg=palette.text
+		autocmd FileType go highlight Special guifg=palette.text gui=bold
 	augroup END
 	]])
 
